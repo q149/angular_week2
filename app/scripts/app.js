@@ -1,7 +1,8 @@
 'use strict';
-angular.module('confusionApp', []).controller('menuController', function() {
-    this.tab = 1;
-    this.filtText = '';
+angular.module('confusionApp', []).controller('MenuController', ['$scope', function($scope) {
+    $scope.tab = 1;
+    $scope.filtText = '';
+    $scope.showDetails = false;
 
     var dishes = [
         {
@@ -45,9 +46,9 @@ angular.module('confusionApp', []).controller('menuController', function() {
         }
     ];
 
-    this.dishes = dishes;
+    $scope.dishes = dishes;
 
-    this.select = function(setTab) {
+    $scope.select = function(setTab) {
         this.tab = setTab;
 
         if (setTab === 2) {
@@ -64,7 +65,11 @@ angular.module('confusionApp', []).controller('menuController', function() {
         }
     };
 
-    this.isSelected = function (checkTab) {
+    $scope.isSelected = function (checkTab) {
         return (this.tab === checkTab);
     };
-});
+
+    $scope.toggleDetails = function() {
+        $scope.showDetails = !$scope.showDetails;
+    };
+}]);
