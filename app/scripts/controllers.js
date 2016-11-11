@@ -6,8 +6,6 @@ angular.module('confusionApp').controller('MenuController', ['$scope', 'menuFact
 
     $scope.dishes = menuFactory.getDishes();
 
-    $scope.dishes = dishes;
-
     $scope.select = function(setTab) {
         this.tab = setTab;
 
@@ -64,5 +62,42 @@ angular.module('confusionApp').controller('MenuController', ['$scope', 'menuFact
                 console.log($scope.feedback);
             }
         };
+    }])
+    .controller('DishDetailController', ['$scope', 'menuFactory', function($scope, menuFactory) {
+        var dish=menuFactory.getDish(3);
+        $scope.dish = dish;
+    }])
+
+    .controller('DishCommentController', ['$scope', function($scope) {
+
+        //Step 1: Create a JavaScript object to hold the comment from the form
+        $scope.feedback = {
+            name : '',
+            stars : '5',
+            theComments : '',
+            date : ''
+        };
+
+        $scope.submitComment = function () {
+
+            //Step 2: This is how you record the date
+            $scope.feedback.date = new Date().toISOString();
+
+            // Step 3: Push your comment into the dish's comment array
+            //$scope.dish.comments.push($scope.feedback);
+            $scope.dish.comments.push({rating: $scope.feedback.stars,
+                comment: $scope.feedback.theComments, author: $scope.feedback.name, date:$scope.feedback.date});
+
+            //Step 4: reset your form to pristine
+            $scope.commentForm.$setPristine();
+
+            //Step 5: reset your JavaScript object that holds your comment
+            $scope.feedback = {
+                name : '',
+                stars : '5',
+                theComments : '',
+                date : ''
+            };
+        }
     }])
 ;

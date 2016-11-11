@@ -1,8 +1,6 @@
 'use strict';
 
-angular.module('confusionApp').factory('menuFactory', function() {
-
-    var menufac = {};
+angular.module('confusionApp').service('menuFactory', function() {
 
     var dishes=[
         {
@@ -164,13 +162,12 @@ angular.module('confusionApp').factory('menuFactory', function() {
         }
     ];
 
-    menufac.getDishes = function() {
+    this.getDishes = function() {
         return dishes;
     };
 
-    menufac.getDishes = function(index) {
+    this.getDish = function(index) {
         return dishes[index];
     };
 
-    return menufac;
 });
