@@ -125,7 +125,7 @@ angular.module('confusionApp').service('menuFactory', function() {
             ]
         },
         {
-            _id: 3,
+
             name:'ElaiCheese Cake',
             image: 'images/elaicheesecake.png',
             category: 'dessert',
